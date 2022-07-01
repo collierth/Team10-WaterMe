@@ -36,15 +36,15 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            SizedBox(height: 30,),
+            SizedBox(height: 50,),
             Container(
               width: MediaQuery.of(context).size.width,
               height: 220,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    color.AppColor.MidnightBlue,
-                    color.AppColor.BabyBlue,
+                    color.AppColor.Green,
+                    color.AppColor.SeafoamGreen,
                   ],
                   begin: Alignment.bottomLeft,
                   end: Alignment.centerRight, 
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                   topLeft: Radius.circular(10),
                   bottomLeft: Radius.circular(10),
                   bottomRight: Radius.circular(10),
-                  topRight: Radius.circular(80),
+                  topRight: Radius.circular(10),
                 ), 
                 boxShadow: [
                   BoxShadow(
