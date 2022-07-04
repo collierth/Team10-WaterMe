@@ -8,4 +8,5 @@ class AppColor {
   static Color LimeGreen = const Color(0xFF81B622);
   static Color ForestGreen = const Color(0xFF1A4314);
   static Color Green = const Color(0xFF2C5E1A);
+  static Color dmgrey = const Color(0xFF3A3B3C);
 }

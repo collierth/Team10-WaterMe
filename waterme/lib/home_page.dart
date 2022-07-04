@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:intl/intl.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -14,8 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String greeting = 'Hello';
-  var dt = DateTime.now();
+  String cdate = DateFormat("MMMM, dd, yyyy").format(DateTime.now());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,23 +22,37 @@ class _HomePageState extends State<HomePage> {
       body: Container(
         padding: const EdgeInsets.only(top: 70, left: 30, right: 30),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Text(
-                  greeting,
-                  style: TextStyle(
-                    fontSize: 30,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w700
-                  ),
-                ),
-              ],
-            ),
+                    Text(
+                      "User Location",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.black,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(cdate,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                      Text(
+                      "Temperature",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.black,
+                      ),
+                    ),
             SizedBox(height: 50,),
             Container(
               width: MediaQuery.of(context).size.width,
-              height: 220,
+              height: 150,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
@@ -50,10 +63,10 @@ class _HomePageState extends State<HomePage> {
                   end: Alignment.centerRight, 
                 ),
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10),
-                  topRight: Radius.circular(10),
+                  topLeft: Radius.circular(20),
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                  topRight: Radius.circular(20),
                 ), 
                 boxShadow: [
                   BoxShadow(
@@ -64,14 +77,14 @@ class _HomePageState extends State<HomePage> {
                 ]
               ),
               child: Container(
-                padding: const EdgeInsets.only(left: 20, top: 25,),
+                padding: const EdgeInsets.only(left: 20, top: 15,),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       "Welcome to Water Me!",
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 20,
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                       ),
