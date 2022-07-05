@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,18 +19,31 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: color.AppColor.homePageBackground,
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: color.AppColor.dmblack,
+        color: color.AppColor.dmgrey,
+        animationDuration: Duration(milliseconds: 300),
+        onTap: (index) {
+          print(index);
+        },
+        items: [
+          Icon(Icons.home, size: 30, color: color.AppColor.SeafoamGreen),
+          Icon(Icons.add, size: 30, color: color.AppColor.SeafoamGreen),
+          Icon(Icons.spa, size: 30, color: color.AppColor.SeafoamGreen),
+        ]
+        ),
+      backgroundColor: color.AppColor.dmblack,
       body: Container(
         padding: const EdgeInsets.only(top: 70, left: 30, right: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
                     Text(
-                      "User Location",
+                      "user.location",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w900,
-                        color: Colors.black,
+                        color: Colors.white,
                       ),
                     ),
                     SizedBox(height: 10),
@@ -37,16 +51,16 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
-                        color: Colors.black,
+                        color: Colors.white,
                       ),
                     ),
                     SizedBox(height: 10),
                       Text(
-                      "Temperature",
+                      "location.degrees.f",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w900,
-                        color: Colors.black,
+                        color: Colors.white,
                       ),
                     ),
             SizedBox(height: 50,),
@@ -56,7 +70,7 @@ class _HomePageState extends State<HomePage> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    color.AppColor.Green,
+                    color.AppColor.ForestGreen,
                     color.AppColor.SeafoamGreen,
                   ],
                   begin: Alignment.bottomLeft,
