@@ -20,19 +20,19 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: color.AppColor.dmblack,
-        color: color.AppColor.dmgrey,
+        backgroundColor: color.AppColor.SeafoamGreen,
+        color: color.AppColor.Green,
         animationDuration: Duration(milliseconds: 300),
         onTap: (index) {
           print(index);
         },
         items: [
-          Icon(Icons.home, size: 30, color: color.AppColor.SeafoamGreen),
-          Icon(Icons.add, size: 30, color: color.AppColor.SeafoamGreen),
-          Icon(Icons.spa, size: 30, color: color.AppColor.SeafoamGreen),
+          Icon(Icons.home, size: 45, color: color.AppColor.homePageBackground),
+          Icon(Icons.add, size: 45, color: color.AppColor.homePageBackground),
+          Icon(Icons.spa, size: 45, color: color.AppColor.homePageBackground),
         ]
         ),
-      backgroundColor: color.AppColor.dmblack,
+      backgroundColor: color.AppColor.SeafoamGreen,
       body: Container(
         padding: const EdgeInsets.only(top: 70, left: 30, right: 30),
         child: Column(
@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w900,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
                     SizedBox(height: 10),
@@ -51,16 +51,16 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
                     SizedBox(height: 10),
                       Text(
-                      "location.degrees.f",
+                      "degrees.f",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w900,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
             SizedBox(height: 50,),
@@ -70,8 +70,8 @@ class _HomePageState extends State<HomePage> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    color.AppColor.ForestGreen,
-                    color.AppColor.SeafoamGreen,
+                    color.AppColor.Green,
+                    color.AppColor.LimeGreen,
                   ],
                   begin: Alignment.bottomLeft,
                   end: Alignment.centerRight, 
