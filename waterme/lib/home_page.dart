@@ -19,6 +19,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add, size: 45, color: color.AppColor.homePageBackground,),
+        backgroundColor: color.AppColor.Green,
+      ),
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: color.AppColor.SeafoamGreen,
         color: color.AppColor.Green,
@@ -27,9 +32,9 @@ class _HomePageState extends State<HomePage> {
           print(index);
         },
         items: [
-          Icon(Icons.home, size: 45, color: color.AppColor.homePageBackground),
-          Icon(Icons.add, size: 45, color: color.AppColor.homePageBackground),
-          Icon(Icons.spa, size: 45, color: color.AppColor.homePageBackground),
+          Icon(Icons.home, size: 30, color: color.AppColor.homePageBackground),
+          Icon(Icons.spa, size: 30, color: color.AppColor.homePageBackground),
+          Icon(Icons.settings, size: 30, color: color.AppColor.homePageBackground),
         ]
         ),
       backgroundColor: color.AppColor.SeafoamGreen,
