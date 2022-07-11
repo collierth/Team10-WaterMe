@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:waterme/models/weather_model.dart';
+import 'package:waterme/services/weather_api_client.dart';
 import 'colors.dart' as color;
 
 class HomePage extends StatefulWidget {
@@ -16,7 +18,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String cdate = DateFormat("MMMM, dd, yyyy").format(DateTime.now());
+  WeatherApiClient client = WeatherApiClient();
+  Weather? data;
   @override
+
+  Future<void> getData() async {
+    data = await client.getCurrentWeather("Atlanta");
+
+  }
+
+
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -39,12 +50,20 @@ class _HomePageState extends State<HomePage> {
         ),
       backgroundColor: color.AppColor.SeafoamGreen,
       body: Container(
+        
         padding: const EdgeInsets.only(top: 70, left: 30, right: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-                    Text(
-                      "user.location",
+            FutureBuilder(
+              future: getData(),
+              builder: (context, snapshot){
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return Column (
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                      "${data!.cityName}",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w900,
@@ -61,13 +80,25 @@ class _HomePageState extends State<HomePage> {
                     ),
                     SizedBox(height: 10),
                       Text(
-                      "degrees.f",
+                      "${data!.temp?.toInt()}°F",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w900,
                         color: Colors.black,
                       ),
                     ),
+                      ],
+                    );
+                } else if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center (
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                
+                return Container();
+              },
+            ),
+                    
             SizedBox(height: 50,),
             Container(
               width: MediaQuery.of(context).size.width,
