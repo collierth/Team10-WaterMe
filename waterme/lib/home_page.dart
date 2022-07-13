@@ -1,13 +1,14 @@
 import 'dart:convert';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:waterme/models/weather_model.dart';
 import 'package:waterme/services/weather_api_client.dart';
+
 import 'colors.dart' as color;
+import 'my_plants.dart';
+import 'settings.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -27,30 +28,10 @@ class _HomePageState extends State<HomePage> {
 
   }
 
-
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add, size: 45, color: color.AppColor.homePageBackground,),
-        backgroundColor: color.AppColor.Green,
-      ),
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: color.AppColor.SeafoamGreen,
-        color: color.AppColor.Green,
-        animationDuration: Duration(milliseconds: 300),
-        onTap: (index) {
-          print(index);
-        },
-        items: [
-          Icon(Icons.home, size: 30, color: color.AppColor.homePageBackground),
-          Icon(Icons.spa, size: 30, color: color.AppColor.homePageBackground),
-          Icon(Icons.settings, size: 30, color: color.AppColor.homePageBackground),
-        ]
-        ),
       backgroundColor: color.AppColor.SeafoamGreen,
       body: Container(
-        
         padding: const EdgeInsets.only(top: 70, left: 30, right: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,6 +68,15 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.black,
                       ),
                     ),
+                    SizedBox(height: 10),
+                      Text(
+                        "${data!.description}",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                        ),
+                      )
                       ],
                     );
                 } else if (snapshot.connectionState == ConnectionState.waiting) {
