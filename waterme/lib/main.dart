@@ -6,6 +6,7 @@ import 'package:waterme/home_page.dart';
 import 'package:waterme/my_plants.dart';
 import 'package:waterme/search.dart';
 import 'package:waterme/settings.dart';
+import 'package:get/get.dart';
 
 import 'colors.dart' as color;
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: MainPage(),
     );
