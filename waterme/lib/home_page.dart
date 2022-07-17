@@ -174,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                       )*/
                       SizedBox(height: 10,),
                       GestureDetector(
-                        onTap: () => Get.to(AddPlants()),
+                        onTap: (() => Get.to(AddPlants())),
                         child: Container(
                         width: 120,
                         height: 40,

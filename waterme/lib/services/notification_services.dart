@@ -6,13 +6,14 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 
+
 class NotifyHelper {
    FlutterLocalNotificationsPlugin
   flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin(); //
 
   initializeNotification() async {
-    //tz.initializeTimeZones();
+    tz.initializeTimeZones();
  final IOSInitializationSettings initializationSettingsIOS =
      IOSInitializationSettings(
          requestSoundPermission: false,
@@ -45,18 +46,18 @@ class NotifyHelper {
         android: androidPlatformChannelSpecifics, iOS: iOSPlatformChannelSpecifics);
     await flutterLocalNotificationsPlugin.show(
       0,
-      'You change your theme',
-      'You changed your theme back !',
+      title,
+      body,
       platformChannelSpecifics,
       payload: 'Default_Sound',
     );
   }
 
-    scheduledNotification() async {
+  scheduledNotification({required String title, required String body}) async {
      await flutterLocalNotificationsPlugin.zonedSchedule(
          0,
-         'scheduled title',
-         'theme changes 5 seconds ago',
+         title,
+         body,
          tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
          const NotificationDetails(
              android: AndroidNotificationDetails('your channel id',

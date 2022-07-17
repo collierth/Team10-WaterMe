@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:waterme/models/plants.dart';
 import 'package:waterme/colors.dart' as color;
 import 'package:get/get.dart';
 import 'package:waterme/my_plants.dart';
+import 'package:waterme/services/notification_services.dart';
 import 'package:waterme/widgets/button.dart';
 
 class PlantProfile extends StatelessWidget {
+   var notifyHelper=NotifyHelper();
   final Plant plant;
-
   PlantProfile(this.plant);
 
   @override
@@ -60,8 +62,16 @@ class PlantProfile extends StatelessWidget {
             ),
             SizedBox(height: 30,),
             GestureDetector (
-              onTap: (() => Get.to("")
-            ),
+              onTap: () {
+                notifyHelper.displayNotification(
+              title: "You Added a Plant!",
+              body: plant.name+" has been added to My Plants",
+              );
+            notifyHelper.scheduledNotification(
+              title: "Scheduled Notification",
+              body: plant.name+" added 5 seconds ago",
+            );
+              },
             child: Container(
               width: 150,
               height: 40,
@@ -87,3 +97,4 @@ class PlantProfile extends StatelessWidget {
     );
   }
 }
+

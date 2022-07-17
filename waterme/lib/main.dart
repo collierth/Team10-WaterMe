@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:waterme/add_plants.dart';
 import 'package:waterme/home_page.dart';
+import 'package:waterme/models/plant_profile.dart';
 import 'package:waterme/my_plants.dart';
 import 'package:waterme/search.dart';
 import 'package:waterme/settings.dart';

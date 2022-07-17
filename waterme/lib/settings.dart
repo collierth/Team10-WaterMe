@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'colors.dart' as color;
 
 class Settings extends StatefulWidget {
@@ -106,6 +107,7 @@ class _SettingsState extends State<Settings> {
             onPressed: () {},
           ),
           TextButton(
+              onPressed: () {},
               child: Text(
                 'About Water Me!',
                 style: TextStyle(
@@ -114,9 +116,11 @@ class _SettingsState extends State<Settings> {
                     color: Colors.black),
                 textAlign: TextAlign.left,
               ),
-              onPressed: () {}),
+            ),
         ],
       ),
     );
   }
 }
+
+
