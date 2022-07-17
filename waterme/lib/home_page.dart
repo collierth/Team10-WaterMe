@@ -228,7 +228,14 @@ class _HomePageState extends State<HomePage> {
                   _selectedDate = date;
                 },
               ),
-            )
+            ),
+            SizedBox(height: 10,),
+            Text("Tip: Current and upcoming watering dates will appear here",
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.italic,
+            ),)
           ]
         ),
       ),

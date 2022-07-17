@@ -58,7 +58,29 @@ class PlantProfile extends StatelessWidget {
                 fontWeight: FontWeight.bold
               )
             ),
-            
+            SizedBox(height: 30,),
+            GestureDetector (
+              onTap: (() => Get.to("")
+            ),
+            child: Container(
+              width: 150,
+              height: 40,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: color.AppColor.Green
+              ),
+            child: Center (
+              child: Text(
+                "+ Add Plant",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                color: Colors.white,
+                ),
+              ),
+              ),
+            )
+      ),
           ],
          )
       )
