@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:waterme/add_plants.dart';
+import 'package:waterme/db/db_helper.dart';
 import 'package:waterme/home_page.dart';
 import 'package:waterme/models/plant_profile.dart';
+import 'package:waterme/models/plants.dart';
 import 'package:waterme/my_plants.dart';
 import 'package:waterme/search.dart';
 import 'package:waterme/settings.dart';
@@ -11,7 +14,10 @@ import 'package:get/get.dart';
 
 import 'colors.dart' as color;
 
-void main() {
+Future<void> main() async {
+  await WidgetsFlutterBinding.ensureInitialized();
+  await DBHelper.initDb();
+  await GetStorage.init();
   runApp(const MyApp());
 }
 

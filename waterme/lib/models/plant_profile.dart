@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:intl/intl.dart';
+import 'package:waterme/controllers/plant_controller.dart';
 import 'package:waterme/models/plants.dart';
 import 'package:waterme/colors.dart' as color;
 import 'package:get/get.dart';
+import 'package:waterme/models/selected_plant.dart';
 import 'package:waterme/my_plants.dart';
 import 'package:waterme/services/notification_services.dart';
 import 'package:waterme/widgets/button.dart';
@@ -11,6 +14,7 @@ class PlantProfile extends StatelessWidget {
    var notifyHelper=NotifyHelper();
   final Plant plant;
   PlantProfile(this.plant);
+  final PlantController _plantController = Get.put(PlantController());
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +47,6 @@ class PlantProfile extends StatelessWidget {
               ),
             ),
             SizedBox(height: 30,),
-            Image.network(
-              plant.url
-            ),
              Text(plant.description,
               textAlign: TextAlign.left,
               style: TextStyle(
@@ -63,7 +64,24 @@ class PlantProfile extends StatelessWidget {
             SizedBox(height: 30,),
             GestureDetector (
               onTap: () {
-                notifyHelper.displayNotification(
+                Get.back();
+
+                addPlantToDb() async {
+                int value =  await _plantController.addSelectedPlant(
+                  selectedPlant: SelectedPlant(
+                    name: plant.name,
+                    description: plant.description,
+                    startTime: DateTime.now().toString(),
+                    endTime: DateTime.now().add(new Duration(seconds: plant.waterCycle)).toString(),
+                    isCompleted: 0,
+                  ),
+                );
+                  print("My id is "+"$value");
+                }
+                addPlantToDb();
+                
+
+              notifyHelper.displayNotification(
               title: "You Added a Plant!",
               body: plant.name+" has been added to My Plants",
               );

@@ -45,6 +45,7 @@ dependencies:
   flutter_native_timezone:
   date_picker_timeline:
   url_launcher:
+  sqflite:
 
 dev_dependencies:
   flutter_test:
