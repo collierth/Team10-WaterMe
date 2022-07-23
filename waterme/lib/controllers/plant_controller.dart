@@ -6,12 +6,28 @@ class PlantController extends GetxController {
 
   @override
   void onReady(){
+    getPlants();
     super.onReady();
   }
+
+  var plantList = <SelectedPlant>[].obs;
 
   Future<int> addSelectedPlant({SelectedPlant? selectedPlant}) async {
     return await DBHelper.insert(selectedPlant);
   }
 
+  void getPlants() async {
+    List<Map<String, dynamic>> plants = await DBHelper.query();
+    plantList.assignAll(plants.map((data) => new SelectedPlant.fromJson(data)).toList());
+  }
 
+  void delete(SelectedPlant selectedPlant) {
+    DBHelper.delete(selectedPlant);
+    getPlants();
+  }
+
+  void markPlantCompleted(int id) async {
+    await DBHelper.update(id);
+    getPlants();
+  }
 }

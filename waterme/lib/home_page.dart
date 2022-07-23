@@ -150,28 +150,6 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.white,
                         ),
                       ),
-                      /*OutlinedButton.icon(
-                        style: OutlinedButton.styleFrom(
-                            side: BorderSide(color: Colors.white)),
-
-                        // shape:
-                        // StadiumBorder();
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) => AddPlants())));
-                        },
-                        icon: const Icon(Icons.add,
-                            size: 14, color: Colors.white),
-
-                        label: const Text(
-                          "Get Started",
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      )*/
                       SizedBox(height: 10,),
                       GestureDetector(
                         onTap: (() => Get.to(AddPlants())),

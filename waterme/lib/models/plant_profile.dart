@@ -10,11 +10,12 @@ import 'package:waterme/my_plants.dart';
 import 'package:waterme/services/notification_services.dart';
 import 'package:waterme/widgets/button.dart';
 
+
 class PlantProfile extends StatelessWidget {
    var notifyHelper=NotifyHelper();
   final Plant plant;
   PlantProfile(this.plant);
-  final PlantController _plantController = Get.put(PlantController());
+  final _plantController = Get.put(PlantController());
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +64,7 @@ class PlantProfile extends StatelessWidget {
             ),
             SizedBox(height: 30,),
             GestureDetector (
-              onTap: () {
-                Get.back();
-
+              onTap: () async {
                 addPlantToDb() async {
                 int value =  await _plantController.addSelectedPlant(
                   selectedPlant: SelectedPlant(
@@ -79,8 +78,8 @@ class PlantProfile extends StatelessWidget {
                   print("My id is "+"$value");
                 }
                 addPlantToDb();
-                
-
+                Get.back();
+                _plantController.getPlants();
               notifyHelper.displayNotification(
               title: "You Added a Plant!",
               body: plant.name+" has been added to My Plants",
