@@ -23,7 +23,7 @@ class DBHelper {
             "CREATE TABLE $_tableName("
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, "
                 "name STRING, description TEXT, "
-                "startTime STRING, endTime STRING, "
+                "startTime STRING, endTime STRING, waterCycle INTEGER, "
                 "isCompleted INTEGER)",
           );
         },

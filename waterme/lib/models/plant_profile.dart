@@ -71,7 +71,8 @@ class PlantProfile extends StatelessWidget {
                     name: plant.name,
                     description: plant.description,
                     startTime: DateTime.now().toString(),
-                    endTime: DateTime.now().add(new Duration(seconds: plant.waterCycle)).toString(),
+                    endTime: DateTime.now().add(new Duration(days: plant.waterCycle)).toString(),
+                    waterCycle: plant.waterCycle,
                     isCompleted: 0,
                   ),
                 );
@@ -84,10 +85,10 @@ class PlantProfile extends StatelessWidget {
               title: "You Added a Plant!",
               body: plant.name+" has been added to My Plants",
               );
-            notifyHelper.scheduledNotification(
+            /*notifyHelper.scheduledNotification(
               title: "Scheduled Notification",
               body: plant.name+" added 5 seconds ago",
-            );
+            );*/
               },
             child: Container(
               width: 150,

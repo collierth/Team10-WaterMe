@@ -5,6 +5,7 @@ class SelectedPlant {
   int? isCompleted;
   String? startTime;
   String? endTime;
+  int? waterCycle;
 
   SelectedPlant({
     this.id,
@@ -13,6 +14,7 @@ class SelectedPlant {
     this.isCompleted,
     this.startTime,
     this.endTime,
+    this.waterCycle,
   });
 
   SelectedPlant.fromJson(Map<String, dynamic> json) {
@@ -22,6 +24,7 @@ class SelectedPlant {
     isCompleted = json['isCompleted'];
     startTime = json['startTime'];
     endTime = json['endTime'];
+    waterCycle = json['waterCycle'];
   }
 
   Map<String, dynamic> toJson() {
@@ -32,6 +35,7 @@ class SelectedPlant {
     data['isCompleted'] = this.isCompleted;
     data['startTime'] = this.startTime;
     data['endTime'] = this.endTime;
+    data['waterCycle'] = this.waterCycle;
     return data;
   }
 }

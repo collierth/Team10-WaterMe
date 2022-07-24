@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:waterme/add_plants.dart';
 import 'package:waterme/colors.dart' as color;
 import 'package:waterme/controllers/plant_controller.dart';
 import 'package:waterme/models/selected_plant.dart';
+import 'package:waterme/models/your_profile.dart';
 import 'package:waterme/services/notification_services.dart';
 import 'package:waterme/widgets/button.dart';
 import 'package:waterme/widgets/plant_tile.dart';
@@ -19,6 +21,7 @@ class MyPlants extends StatefulWidget {
 }
 
 class _MyPlantsState extends State<MyPlants> {
+  var notifyHelper = NotifyHelper();
   final _plantController = Get.put(PlantController());
   @override
   Widget build(BuildContext context) {
@@ -51,7 +54,6 @@ class _MyPlantsState extends State<MyPlants> {
                     fontStyle: FontStyle.italic,
                     ),
                 ),
-              
             ]
         )
       ),
@@ -71,6 +73,12 @@ class _MyPlantsState extends State<MyPlants> {
                   itemCount: _plantController.plantList.length,
                   itemBuilder: (_, index) {
                     print(_plantController.plantList.length);
+                    SelectedPlant selectedPlant = _plantController.plantList[index];
+
+                    String t = DateFormat.yMd().format(DateTime.now());
+                    DateTime et = DateTime.parse(selectedPlant.startTime??"");
+                    String t2 = DateFormat.yMd().format(et);
+                    
                     return AnimationConfiguration.staggeredList(
                       position: index, 
                       child: SlideAnimation(
@@ -79,9 +87,9 @@ class _MyPlantsState extends State<MyPlants> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  _showBottomSheet(context, _plantController.plantList[index]);
+                                  _showBottomSheet(context, selectedPlant);
                                 },
-                                child: PlantTile(_plantController.plantList[index])
+                                child: PlantTile(selectedPlant)
                               )
                             ],
                           )
@@ -116,8 +124,8 @@ class _MyPlantsState extends State<MyPlants> {
               : _bottomSheetButton(
                 label: "Go to Plant", 
                 onTap: () {
-                  _plantController.markPlantCompleted(selectedPlant.id!);
-                  Get.back();
+                  //_plantController.markPlantCompleted(selectedPlant.id!);
+                  Get.to(YourProfile(selectedPlant));
                 }, 
                 clr: color.AppColor.LimeGreen,
                 context: context,

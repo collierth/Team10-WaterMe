@@ -1,14 +1,18 @@
 import 'dart:convert';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:waterme/add_plants.dart';
+import 'package:waterme/controllers/plant_controller.dart';
+import 'package:waterme/models/selected_plant.dart';
 import 'package:waterme/models/weather_model.dart';
 import 'package:waterme/services/notification_services.dart';
 import 'package:waterme/services/weather_api_client.dart';
+import 'package:waterme/widgets/home_plant_tile';
 
 import 'colors.dart' as color;
 import 'my_plants.dart';
@@ -34,6 +38,7 @@ class _HomePageState extends State<HomePage> {
     notifyHelper.initializeNotification();
     notifyHelper.requestIOSPermissions();
   }
+  final _plantController = Get.put(PlantController());
 
   Future<void> getData() async {
     data = await client.getCurrentWeather("Atlanta");
@@ -203,7 +208,9 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.black,
                 ),
                 onDateChange: (date) {
-                  _selectedDate = date;
+                  setState(() {
+                    _selectedDate = date;
+                  });
                 },
               ),
             ),
@@ -213,11 +220,58 @@ class _HomePageState extends State<HomePage> {
               fontSize: 15,
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,
-            ),)
+            ),),
+            Container(
+              child: _showPlants(),
+            )
           ]
         ),
       ),
     );
+  }
+
+  _showPlants() {
+    return Expanded(
+              child: Obx((){
+                return ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: _plantController.plantList.length,
+                  itemBuilder: (_, index) {
+                    SelectedPlant selectedPlant = _plantController.plantList[index];
+
+                    String t = DateFormat.yMd().format(_selectedDate);
+                    DateTime et = DateTime.parse(selectedPlant.endTime??"");
+                    String t2 = DateFormat.yMd().format(et);
+                    print(t2);
+                    print(_selectedDate);
+                    
+
+                    if (t2==t)
+                    {
+                      
+                        return AnimationConfiguration.staggeredList(
+                      position: index, 
+                      child: SlideAnimation(
+                        child: FadeInAnimation (
+                          child: Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  
+                                },
+                                child: HomePlantTile(selectedPlant)
+                              )
+                            ],
+                          )
+                        )
+                      ));
+                    } else {
+                      return Container();
+                    }
+                    
+                });
+              }),
+            );
   }
 
 }
