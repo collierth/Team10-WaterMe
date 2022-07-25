@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:http/http.dart';
 import 'package:waterme/db/db_helper.dart';
 import 'package:waterme/models/selected_plant.dart';
 
@@ -28,6 +29,16 @@ class PlantController extends GetxController {
 
   void markPlantCompleted(int id) async {
     await DBHelper.update(id);
+    getPlants();
+  }
+
+  void updateEndTime(String newEndTime, int id) async {
+    await DBHelper.updateEndTime(newEndTime, id);
+    getPlants();
+  }
+
+  void updateName(String newName, int id) async {
+    await DBHelper.updateName(newName, id);
     getPlants();
   }
 }

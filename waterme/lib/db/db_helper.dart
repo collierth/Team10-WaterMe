@@ -54,4 +54,20 @@ class DBHelper {
       WHERE ID =?
     ''', [1, id]);
   }
+
+  static updateEndTime(String newEndTime, int id) async {
+    return await _db!.rawUpdate('''
+      UPDATE plants
+      SET endTime = ?
+      WHERE ID =?
+    ''', [newEndTime, id]);
+  }
+
+  static updateName(String newName, int id) async {
+    return await _db!.rawUpdate('''
+      UPDATE plants
+      SET name = ?
+      WHERE ID =?
+    ''', [newName, id]);
+  }
 }

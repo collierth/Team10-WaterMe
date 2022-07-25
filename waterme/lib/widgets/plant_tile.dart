@@ -58,17 +58,9 @@ class PlantTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.access_time_rounded,
+                      Icons.grass,
                       color: Colors.grey[200],
-                      size: 18,
-                    ),
-                    SizedBox(width: 4),
-                    Text(
-                      "${selectedPlant!.endTime}",
-                      style: GoogleFonts.lato(
-                        textStyle:
-                        TextStyle(fontSize: 13, color: Colors.grey[100]),
-                      ),
+                      size: 25,
                     ),
                   ]
                 ),

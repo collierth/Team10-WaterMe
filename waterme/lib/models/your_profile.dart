@@ -12,6 +12,7 @@ class YourProfile extends StatelessWidget{
   final _plantController = Get.put(PlantController());
   final SelectedPlant? selectedPlant;
   YourProfile(this.selectedPlant);
+  DateTime now = DateTime.now();
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,8 +46,30 @@ class YourProfile extends StatelessWidget{
              _startTimeParser(),
              SizedBox(height: 20,),
              
+             selectedPlant!.isCompleted==1
+            ?Container(
+              child: Text("Your plant is doing good for now. \n\nCheck back later!", 
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 25,
+                        ),
+                      ),
+            )
+              : _waterButton(
+                label: "Complete Watering", 
+                onTap: () {
+                  int? wc = selectedPlant?.waterCycle;
+                  DateTime in2d = DateTime.now().add(new Duration(days: wc!));
+                  String newEndTime = in2d.add(new Duration(days: wc)).toString();
+                  _plantController.markPlantCompleted(selectedPlant!.id!);
+                  _plantController.updateEndTime(newEndTime, selectedPlant!.id!);
+                }, 
+                clr: color.AppColor.LimeGreen,
+                context: context,
+                ),
              
-        SizedBox(height: 200,),
+             
+        SizedBox(height: 50,),
               Text("Overview",
               textAlign: TextAlign.left,
               style: TextStyle(
@@ -112,10 +135,37 @@ class YourProfile extends StatelessWidget{
         )
       ]
     );
-    
-    
-    
+  }
 
-
+  _waterButton({
+    required String label,
+    required Function()? onTap,
+    required Color clr,
+    bool isClose = false,
+    required BuildContext context,
+  }){
+      return GestureDetector(
+        onTap: onTap,
+        child: Container(
+          margin: const EdgeInsets.symmetric(vertical: 4),
+          height: 55,
+          width: MediaQuery.of(context).size.width*0.9,
+          
+          decoration: BoxDecoration(
+            border: Border.all(
+              width: 2,
+              color: clr
+            ),
+            borderRadius: BorderRadius.circular(20),
+            color: clr,
+          ),
+          child:  Center(
+            child: Text(
+            label,
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),
+          ),
+          )
+        ),
+      );
   }
 }

@@ -104,9 +104,7 @@ class _MyPlantsState extends State<MyPlants> {
     Get.bottomSheet(
       Container(
         padding: const EdgeInsets.only(top: 4),
-        height: selectedPlant.isCompleted==1?
-        MediaQuery.of(context).size.height*0.24:
-        MediaQuery.of(context).size.height*0.32,
+        height: MediaQuery.of(context).size.height*0.35,
         color: color.AppColor.homePageBackground,
         child: Column(
           children: [
@@ -118,10 +116,32 @@ class _MyPlantsState extends State<MyPlants> {
                 color: Colors.grey[300]
               ),
             ),
+            SizedBox(height: 10,),
+            Container(
+              child: Column(
+                children: [
+                  TextFormField(
+                    textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 30,
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.bold,
+                ),
+                initialValue: selectedPlant.name,
+                onChanged: (val) {
+                  setState(() {
+                    selectedPlant.name = val;
+                    _plantController.updateName(val, selectedPlant.id!);
+                  });
+                },
+              )
+                ],
+                
+              )
+              
+            ),
             Spacer(),
-            selectedPlant.isCompleted==1
-            ?Container()
-              : _bottomSheetButton(
+            _bottomSheetButton(
                 label: "Go to Plant", 
                 onTap: () {
                   //_plantController.markPlantCompleted(selectedPlant.id!);
@@ -178,5 +198,6 @@ class _MyPlantsState extends State<MyPlants> {
         ),
       );
   }
+
 }
 

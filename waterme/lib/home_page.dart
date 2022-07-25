@@ -12,7 +12,7 @@ import 'package:waterme/models/selected_plant.dart';
 import 'package:waterme/models/weather_model.dart';
 import 'package:waterme/services/notification_services.dart';
 import 'package:waterme/services/weather_api_client.dart';
-import 'package:waterme/widgets/home_plant_tile';
+import 'package:waterme/widgets/home_plant_tile.dart';
 
 import 'colors.dart' as color;
 import 'my_plants.dart';
