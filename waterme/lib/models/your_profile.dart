@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:waterme/controllers/plant_controller.dart';
 import 'package:waterme/colors.dart' as color;
 import 'package:waterme/models/selected_plant.dart';
+import 'package:waterme/services/notification_services.dart';
 
 class YourProfile extends StatelessWidget{
   @override
@@ -13,6 +14,7 @@ class YourProfile extends StatelessWidget{
   final SelectedPlant? selectedPlant;
   YourProfile(this.selectedPlant);
   DateTime now = DateTime.now();
+  var notifyHelper=NotifyHelper();
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +32,8 @@ class YourProfile extends StatelessWidget{
           )
         ),
       ),
-      body: Container(
+      body: SingleChildScrollView(
+        child: Container(
          padding: const EdgeInsets.only(left: 30, right: 30),
          child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,6 +66,11 @@ class YourProfile extends StatelessWidget{
                   String newEndTime = in2d.add(new Duration(days: wc)).toString();
                   _plantController.markPlantCompleted(selectedPlant!.id!);
                   _plantController.updateEndTime(newEndTime, selectedPlant!.id!);
+
+                  notifyHelper.displayNotification(
+                  title: "Watering completed",
+                  body: selectedPlant!.name!+" has been watered!",
+                  );
                 }, 
                 clr: color.AppColor.LimeGreen,
                 context: context,
@@ -77,6 +85,23 @@ class YourProfile extends StatelessWidget{
                 fontStyle: FontStyle.italic
               )
              ),
+            SizedBox(height: 10,),
+             Text(selectedPlant?.staticName??"",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic
+              )
+             ),
+             Text(selectedPlant?.species??"",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 15,
+                fontStyle: FontStyle.italic
+              )
+             ),
+             SizedBox(height: 10,),
              Text(selectedPlant?.description??"",
               textAlign: TextAlign.left,
               style: TextStyle(
@@ -85,10 +110,13 @@ class YourProfile extends StatelessWidget{
              ),
              SizedBox(height: 30,),
              _endTimeParser(),
+             SizedBox(height: 50,),
             
           ],
          )
       )
+      )
+      
     );
   }
 

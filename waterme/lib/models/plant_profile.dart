@@ -69,6 +69,8 @@ class PlantProfile extends StatelessWidget {
                 int value =  await _plantController.addSelectedPlant(
                   selectedPlant: SelectedPlant(
                     name: plant.name,
+                    staticName: plant.staticName,
+                    species: plant.species,
                     description: plant.description,
                     startTime: DateTime.now().toString(),
                     endTime: DateTime.now().add(new Duration(days: plant.waterCycle)).toString(),

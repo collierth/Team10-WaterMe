@@ -78,6 +78,17 @@ class _MyPlantsState extends State<MyPlants> {
                     String t = DateFormat.yMd().format(DateTime.now());
                     DateTime et = DateTime.parse(selectedPlant.startTime??"");
                     String t2 = DateFormat.yMd().format(et);
+
+                    for (var i = 0; i < 100; i++)
+                    {
+                      if (i == selectedPlant.id)
+                      {
+                        if (t2 == t)
+                        {
+                          notifyHelper.scheduledNotification(selectedPlant.waterCycle!, selectedPlant.name!, selectedPlant);
+                        }
+                      }
+                    }
                     
                     return AnimationConfiguration.staggeredList(
                       position: index, 
@@ -144,7 +155,6 @@ class _MyPlantsState extends State<MyPlants> {
             _bottomSheetButton(
                 label: "Go to Plant", 
                 onTap: () {
-                  //_plantController.markPlantCompleted(selectedPlant.id!);
                   Get.to(YourProfile(selectedPlant));
                 }, 
                 clr: color.AppColor.LimeGreen,

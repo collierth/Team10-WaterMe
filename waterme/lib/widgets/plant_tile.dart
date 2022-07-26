@@ -62,6 +62,13 @@ class PlantTile extends StatelessWidget {
                       color: Colors.grey[200],
                       size: 25,
                     ),
+                    SizedBox(width: 5,),
+                    Text(selectedPlant?.staticName??"",
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
+                    )
                   ]
                 ),
               ],

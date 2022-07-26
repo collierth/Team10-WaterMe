@@ -22,7 +22,7 @@ class DBHelper {
           return db.execute(
             "CREATE TABLE $_tableName("
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                "name STRING, description TEXT, "
+                "name STRING, staticName STRING, species STRING, description TEXT, "
                 "startTime STRING, endTime STRING, waterCycle INTEGER, "
                 "isCompleted INTEGER)",
           );
