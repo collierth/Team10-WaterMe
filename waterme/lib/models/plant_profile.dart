@@ -47,6 +47,13 @@ class PlantProfile extends StatelessWidget {
               fontStyle: FontStyle.italic
               ),
             ),
+            Text(plant.species,
+              style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontStyle: FontStyle.italic
+              ),
+            ),
             SizedBox(height: 30,),
              Text(plant.description,
               textAlign: TextAlign.left,
