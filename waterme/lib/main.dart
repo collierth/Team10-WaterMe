@@ -54,7 +54,7 @@ class _MainPageState extends State<MainPage> {
           HomePage(),
           MyPlants(),
           //AddPlants(),
-          //Search(),
+          Search(),
           Settings(),
         ],
         items: _navBarItems(),
@@ -83,12 +83,12 @@ class _MainPageState extends State<MainPage> {
       activeColorPrimary: color.AppColor.LimeGreen,
       inactiveColorPrimary: CupertinoColors.systemGrey,
       ),*/
-    /*PersistentBottomNavBarItem(
+    PersistentBottomNavBarItem(
       icon: const Icon(CupertinoIcons.search),
       title: ("Search"),
       activeColorPrimary: color.AppColor.LimeGreen,
       inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),*/
+      ),
     PersistentBottomNavBarItem(
       icon: const Icon(CupertinoIcons.settings),
       title: ("Settings"),
